@@ -72,7 +72,8 @@ class Parser:
         if self.command_type() == Commands.C_COMMAND:
             # first split command by = - first part should be dest
             split_command = self.current_command.split('=')
-            dest = split_command[0]
+            dest = 'NULL'
+            jump = 'NULL'
             if len(split_command) > 1:
                 # if there's still stuff left, then split again by ;
                 second_split = split_command[1].split(';')
@@ -81,10 +82,11 @@ class Parser:
                 if len(second_split) > 1:
                     # if theres still more stuff left, then the rest is jump
                     jump = second_split[1]
-                else:
-                    jump = ''
             else:
-                comp = ''
+                # no = in command - means no dest part
+                split_command = self.current_command.split(';')
+                jump = split_command[1]
+                comp = split_command[0]
         return dest, comp, jump
             
 
