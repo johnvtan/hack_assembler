@@ -75,6 +75,8 @@ class Parser:
             dest = 'NULL'
             jump = 'NULL'
             if len(split_command) > 1:
+                # the first part of the first split should be our dest
+                dest = split_command[0]
                 # if there's still stuff left, then split again by ;
                 second_split = split_command[1].split(';')
                 # first part of this split is comp
