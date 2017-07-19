@@ -60,9 +60,11 @@ class Parser:
     def symbol(self):
         # returns the symbol or decimal of the current A or L Command
         if self.command_type() == Commands.A_COMMAND:
-            return ''.join([self.current_command[i] for i in range(1, len(self.current_command))])
+            #return ''.join([self.current_command[i] for i in range(1, len(self.current_command))])
+            return self.current_command[1:]
         elif self.command_type() == Commands.L_COMMAND:
-            return ''.join([self.current_command[i] for i in range(1, len(self.current_command) - 1)])
+            #return ''.join([self.current_command[i] for i in range(1, len(self.current_command) - 1)])
+            return self.current_command[1:len(self.current_command) - 1]
         else:
             raise ValueError('Command cannot be a C_COMMAND for symbol() method')
      
